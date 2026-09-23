@@ -1,0 +1,231 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --card: #f9fafb;
+  --track: #e9eaee;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181c;
+    --fg: #f3f4f6;
+    --muted: #9aa1ac;
+    --line: #2a2d33;
+    --card: #1e2126;
+    --track: #2c3037;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 340px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.pill {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 1px 7px 2px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.acts {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+
+button {
+  font: inherit;
+  font-size: 11px;
+  color: var(--fg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--muted);
+}
+
+main {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notice {
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.notice b {
+  color: var(--fg);
+}
+
+.meter .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.meter .name {
+  font-weight: 600;
+}
+
+.meter .pct {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.track {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+/* 사용한 구간(fill) 안에서만 모델별 색상이 나뉩니다.
+   ollama.com이 주는 모델 비중은 "사용한 구간 대비 비율"이므로
+   반드시 fill 안쪽에 배치해야 합니다. */
+.track .fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.track .fill span {
+  flex: 0 0 auto;
+  height: 100%;
+  border-right: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.track .fill span:last-child {
+  border-right: 0;
+}
+
+.sub {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.legend .title {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.legend .row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+}
+
+.legend .swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.legend .mname {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.legend .mreq {
+  flex: none;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.credits {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.credits b {
+  color: var(--fg);
+  font-size: 13px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px 11px;
+  border-top: 1px solid var(--line);
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

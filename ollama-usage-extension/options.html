@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ollama 사용 한도 설정</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --fg: #111827;
+        --muted: #6b7280;
+        --line: #e5e7eb;
+        --card: #f9fafb;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #16181c;
+          --fg: #f3f4f6;
+          --muted: #9aa1ac;
+          --line: #2a2d33;
+          --card: #1e2126;
+        }
+      }
+      body {
+        margin: 0;
+        padding: 28px;
+        background: var(--bg);
+        color: var(--fg);
+        font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+      }
+      main {
+        max-width: 520px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0 0 4px;
+      }
+      p.lead {
+        margin: 0 0 22px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+        border-top: 1px solid var(--line);
+      }
+      .field:last-of-type {
+        border-bottom: 1px solid var(--line);
+      }
+      .field .label {
+        font-weight: 600;
+      }
+      .field .hint {
+        display: block;
+        font-weight: 400;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      input[type="number"],
+      select {
+        font: inherit;
+        padding: 5px 8px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--fg);
+      }
+      input[type="number"] {
+        width: 80px;
+      }
+      button {
+        font: inherit;
+        padding: 7px 14px;
+        border-radius: 9px;
+        border: 1px solid var(--line);
+        background: var(--fg);
+        color: var(--bg);
+        cursor: pointer;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .saved {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      code {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 1px 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Ollama 사용 한도</h1>
+      <p class="lead">
+        값을 읽어오는 방식: 로그인된 브라우저 세션으로 <code>ollama.com/settings</code>를 읽습니다. API 키가 필요 없습니다.
+      </p>
+
+      <div class="field">
+        <label class="label" for="interval">
+          자동 갱신 주기
+          <span class="hint">분 단위, 최소 1분</span>
+        </label>
+        <input id="interval" type="number" min="1" max="120" step="1" />
+      </div>
+
+      <div class="field">
+        <label class="label" for="threshold">
+          경고 알림 기준
+          <span class="hint">세션 사용률이 이 값을 넘으면 알림</span>
+        </label>
+        <input id="threshold" type="number" min="50" max="100" step="5" />
+      </div>
+
+      <div class="field">
+        <label class="label" for="showAs">
+          표시 방식
+          <span class="hint">숫자 뱃지 / 아이콘을 감싸는 원형 게이지 / 둘 다</span>
+        </label>
+        <select id="showAs">
+          <option value="badge">숫자 뱃지</option>
+          <option value="ring">원형 게이지</option>
+          <option value="both">원형 게이지 + 숫자</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label" for="badge">
+          뱃지·게이지 기준
+          <span class="hint">숫자와 원형 게이지에 무엇을 보여줄지</span>
+        </label>
+        <select id="badge">
+          <option value="session">세션 사용률</option>
+          <option value="weekly">주간 사용률</option>
+          <option value="max">둘 중 높은 쪽</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label" for="notify">
+          한도 알림
+          <span class="hint">기준 초과 시 OS 알림 표시</span>
+        </label>
+        <input id="notify" type="checkbox" />
+      </div>
+
+      <div class="row">
+        <button id="save" type="button">저장</button>
+        <span id="saved" class="saved"></span>
+      </div>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

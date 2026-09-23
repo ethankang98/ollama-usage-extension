@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <div class="who">
+        <span class="brand">Ollama 사용 한도</span>
+        <span id="plan" class="pill" hidden></span>
+      </div>
+      <div class="acts">
+        <button id="refresh" type="button" title="지금 새로고침">새로고침</button>
+        <button id="settings" type="button" title="설정">설정</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="notice" class="notice" hidden></div>
+      <div id="meters" class="meters"></div>
+      <div id="credits" class="credits" hidden></div>
+    </main>
+
+    <footer>
+      <span id="stamp">-</span>
+      <a id="openSite" href="https://ollama.com/settings" target="_blank" rel="noreferrer">ollama.com/settings</a>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

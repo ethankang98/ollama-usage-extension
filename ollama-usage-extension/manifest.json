@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Ollama 사용 한도",
+  "version": "1.0.0",
+  "description": "ollama.com 클라우드 사용 한도(세션·주간 사용률, 초기화 시각)와 모델별 요청 수, 사용 크레딧 잔액을 툴바에서 확인합니다.",
+  "permissions": ["storage", "alarms", "notifications"],
+  "host_permissions": ["https://ollama.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Ollama 사용 한도",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
